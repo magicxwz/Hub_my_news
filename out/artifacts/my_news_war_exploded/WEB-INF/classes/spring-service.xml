@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <context:component-scan base-package="com.pc.service.impl"/>
+
+    <!--2.配置声明式事物-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--<constructor-arg ref="dataSource" />-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--3.配置通知-->
+    <!--
+        REQUIRED:默认值,表示如果存在一个事务,则支持当前事务,如果当前没有事务,则开启一个新的事务. 增删改
+        SUPPORTS:表示如果存在一个事务,则支持当前事务,如果当前没有事务,则按非事务方式执行, 查询
+        MANDATORY:表示如果存在一个事务,则支持当前事务,如果当前没有事务,则抛出异常
+        REQUIRES_NEW:表示总是开启一个新的事务,如果当前有一个事务,则将当前事务挂起,开启新事物执行方法.
+        NOT_SUPPORTED:表示总是以非事务方式执行.如果一个事务已经存在,则将这个存在的事务挂起,然后执行方法.
+        NEVER:表示总是以非事务方式执行.如果当前存在一个活动的事务,则抛出异常
+        NESTED:表示如果当前存在一个活动的事务,则创建一个事务作为当前事务的嵌套事务运行,如果没有当前事务,该取值与REQUIRED相同.
+    -->
+    <tx:advice id="advice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="find*" read-only="true" propagation="SUPPORTS" />
+            <tx:method name="query*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="select*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="get*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="del*" propagation="REQUIRED" rollback-for="java.lang.Exception" timeout="2"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--4.使用 AOP 方式织入事物-->
+    <aop:config>
+        <aop:pointcut id="pt" expression="execution(* com.pc.service.impl.*.*(..))"/>
+        <aop:advisor advice-ref="advice" pointcut-ref="pt"/>
+    </aop:config>
+
+
+</beans>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pc.dao.NewMapper">
+    <sql id="my_news" >
+        select nid, ntid, ntitle, nauthor, ncreateDate, npicPath, ncontent, nmodifyDate, nsummary from news
+    </sql>
+    <sql id="my_topic">
+        select tid, tname from topic
+    </sql>
+    <sql id="my_users">
+        select uid, uname, upwd from users
+    </sql>
+    <sql id="my_comments">
+        select cid, cnid, ccontent, cdate, cip, cauthor from comments
+    </sql>
+<!--    -->
+
+
+
+    <select id="selectUsers" resultType="users">
+        <include refid="my_users"/>
+    </select>
+    <select id="selectComments" resultType="comments">
+        <include refid="my_comments"/>
+    </select>
+<!-- selectNews   -->
+    <select id="selectNews" resultMap="newsmap">
+        <include refid="my_news"/>
+    </select>
+    <resultMap id="newsmap" type="news">
+        <association property="topics" column="ntid" javaType="topic"  select="selectTopic"/>
+    </resultMap>
+    <select id="selectTopic" resultType="topic">
+        <include refid="my_topic"/>
+        where tid=#{ntid}
+    </select>
+    <!--    -->
+</mapper>
