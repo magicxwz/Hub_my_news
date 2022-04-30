@@ -60,5 +60,16 @@ public class test {
 
         }
     }
+    @Test
+    public void t6(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        NewService newServiceImpl = (NewService) context.getBean("newServiceImpl");
+        List<News> news = newServiceImpl.selectNews();
+        for (News news1 : news) {
+            System.out.println(news1);
+            System.out.println("测试类");
+
+        }
+    }
 
 }
