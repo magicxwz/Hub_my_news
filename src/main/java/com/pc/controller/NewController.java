@@ -31,7 +31,6 @@ public class NewController {
     @ResponseBody
     public String newsn(@PathVariable int ntid, Model model){
         System.out.println(ntid);
-
         List<News> news = newService.selectNewsntid(ntid);
         String s = JSON.toJSONString(news);
         return s;
