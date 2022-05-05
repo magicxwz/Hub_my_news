@@ -7,7 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>新闻中国</title>
-<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet" type="text/css" charset="utf-8" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js" charset="utf-8"></script>
 </head>
 
 <body >
@@ -143,7 +144,7 @@
                 </ul>
                 <ul class="classlist">
                     <c:forEach items="${news}" var="newx" begin="0" end="4">
-                        <li><a href="${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
+                        <li><a href="javascript:zt(${newx.nid})">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
                     </c:forEach>
                     <li class="space"></li>
                     <c:forEach items="${news}" var="newx" begin="5" end="9">
@@ -206,3 +207,21 @@
 </div>
 </body>
 </html>
+<script type="text/javascript">
+function zt(tnid){
+    $.ajax({
+        "url":"/News/newsn",//提交链接
+        "type":"get",//提交类型
+        "data":{
+            "tnid":tnid
+        },//提交值
+        "dataType":"json",//返回类型
+        "success":function(data){//返回类型的最终值
+            console.log(data)
+        },
+        "error":function(){//成功与否运行
+            console.log("查询失败");
+        }
+    })
+}
+</script>

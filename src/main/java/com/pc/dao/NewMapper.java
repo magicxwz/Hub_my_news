@@ -13,4 +13,5 @@ public interface NewMapper {
     List<Users> selectUsers();
     List<Comments> selectComments();
     List<News> selectNewsntid(int ntid);
+    News selectNew(int nid);
 }

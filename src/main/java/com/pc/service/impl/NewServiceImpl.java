@@ -39,4 +39,9 @@ public class NewServiceImpl implements NewService {
     public List<News> selectNewsntid(int ntid) {
         return newMapper.selectNewsntid(ntid);
     }
+
+    @Override
+    public News selectNew(int nid) {
+        return newMapper.selectNew(nid);
+    }
 }
