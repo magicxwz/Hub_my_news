@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/News")
 public class NewController {
@@ -25,10 +27,10 @@ public class NewController {
         model.addAttribute("wlxw",newService.selectNewsntid(5));
         return "index";
     }
-    @GetMapping("/newsn/{nid}")
+    @GetMapping("/newsn/{ntid}")
     @ResponseBody
-    public String newsn(@PathVariable int nid, Model model){
-        News news = newService.selectNew(nid);
+    public String newsn(@PathVariable int ntid, Model model){
+        List<News> news = newService.selectNewsntid(ntid);
         String s = JSON.toJSONString(news);
         return s;
 

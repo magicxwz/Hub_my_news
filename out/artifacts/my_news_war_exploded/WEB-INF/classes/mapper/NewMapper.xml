@@ -15,21 +15,41 @@
     <sql id="my_comments">
         select cid, cnid, ccontent, cdate, cip, cauthor from comments
     </sql>
-<!--    -->
+    <!---->
+
+    <!--查询所有主题-->
     <select id="selectTopic" resultType="topic">
         <include refid="my_topic"/>
     </select>
+    <!---->
+
+    <!--查询所有用户-->
     <select id="selectUsers" resultType="users">
         <include refid="my_users"/>
     </select>
+    <!---->
+
+    <!--查询所有评论-->
     <select id="selectComments" resultType="comments">
         <include refid="my_comments"/>
     </select>
+    <!---->
+
+    <!--根据主题id查询新闻-->
+    <select id="selectNew" resultType="news">
+        <include refid="my_news"/>
+        where nid=#{nid}
+    </select>
+    <!---->
+
+    <!--根据主题id查询新闻-->
     <select id="selectNewsntid" resultType="news">
         <include refid="my_news"/>
         where ntid=#{ntid}
     </select>
-<!-- selectNews   -->
+    <!---->
+
+    <!-- 多对一查询新闻里面带个topics类selectNews   -->
     <select id="selectNews" resultMap="newsmap">
         <include refid="my_news"/>
     </select>
@@ -40,5 +60,6 @@
         <include refid="my_topic"/>
         where tid=#{ntid}
     </select>
+    <!---->
 
 </mapper>
