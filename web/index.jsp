@@ -13,6 +13,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  <h1><a href="/News/newsadd">新闻首页</a></h1>
+  <h1><a href="/News/newselect">新闻首页</a></h1>
   </body>
 </html>

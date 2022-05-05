@@ -15,24 +15,26 @@
     <sql id="my_comments">
         select cid, cnid, ccontent, cdate, cip, cauthor from comments
     </sql>
-    <select id="selectNews" resultMap="newsmap">
-        <include refid="my_news"/>
-    </select>
-    <resultMap id="newsmap" type="news">
-        <association property="topics"  select="selectTopic"/>
-    </resultMap>
-    <select id="selectidTopic" parameterType="topic">
-        <include refid="my_topic"/>
-        where tid=#{ntid}
-    </select>
+<!--    -->
 
-    <select id="selectTopic" resultType="topic">
-        <include refid="my_topic"/>
-    </select>
+
+
     <select id="selectUsers" resultType="users">
         <include refid="my_users"/>
     </select>
     <select id="selectComments" resultType="comments">
         <include refid="my_comments"/>
     </select>
+<!-- selectNews   -->
+    <select id="selectNews" resultMap="newsmap">
+        <include refid="my_news"/>
+    </select>
+    <resultMap id="newsmap" type="news">
+        <association property="topics" column="ntid" javaType="topic"  select="selectTopic"/>
+    </resultMap>
+    <select id="selectTopic" resultType="topic">
+        <include refid="my_topic"/>
+        where tid=#{ntid}
+    </select>
+    <!--    -->
 </mapper>

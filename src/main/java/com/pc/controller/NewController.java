@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class NewController {
     @Autowired
     private NewService newService;
-    @GetMapping("/newsadd")
+    @GetMapping("/newselect")
     public String selNews(Model model){
         model.addAttribute("news",newService.selectNews());
         return "index";

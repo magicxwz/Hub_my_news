@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -137,78 +138,35 @@
     	<div class="content">
         	<ul class="class_date">
             	<li id="class_month">
-                	<a href='index1.jsp?ntid=1'><b>
-国内
-</b></a>
-<a href='index1.jsp?ntid=2'><b>
-国际
-</b></a>
-<a href='index1.jsp?ntid=3'><b>
-军事
-</b></a>
-<a href='index1.jsp?ntid=4'><b>
-体育
-</b></a>
-<a href='index1.jsp?ntid=5'><b>
-娱乐
-</b></a>
-<a href='index1.jsp?ntid=6'><b>
-社会
-</b></a>
-<a href='index1.jsp?ntid=7'><b>
-财经
-</b></a>
-<a href='index1.jsp?ntid=8'><b>
-科技
-</b></a>
-<a href='index1.jsp?ntid=9'><b>
-健康
-</b></a>
-<a href='index1.jsp?ntid=10'><b>
-汽车
-</b></a>
-<a href='index1.jsp?ntid=11'><b>
-教育
-</b></a>
-</li><li id="class_month">
-<a href='index1.jsp?ntid=12'><b>
-房产
-</b></a>
-<a href='index1.jsp?ntid=13'><b>
-家居
-</b></a>
-<a href='index1.jsp?ntid=14'><b>
-旅游
-</b></a>
-<a href='index1.jsp?ntid=15'><b>
-文化
-</b></a>
-<a href='index1.jsp?ntid=16'><b>
-其他
-</b></a>
-</li>
-            
+                    <c:forEach items="${news.topics}" var="topic" begin="0" end="10">
+                        <a href='index1.jsp?ntid=1'><b>国内</b></a>
+                    </c:forEach>
+                    </li><li id="class_month">
+                    <c:forEach items="${news.topics}" var="topic" begin="11" end="20">
+                        <a href='index1.jsp?ntid=1'><b>国内</b></a>
+                    </c:forEach>
+                </li>
             </ul>
             <ul class="classlist">
-                <c:forEach items="${news}" var="new" begin="0" end="4">
-                    <li><a href="#">${new.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${new.ncreateDate}" />)</span></li>
-                </c:forEach>
-                <li class="space"></li>
-                <c:forEach items="${news}" var="new" begin="5" end="9">
-                    <li><a href="#">${new.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${new.ncreateDate}" />)</span></li>
-                </c:forEach>
-                <li class="space"></li>
-                <c:forEach items="${news}" var="new" begin="0" end="5">
-                    <li><a href="#">${new.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${new.ncreateDate}" />)</span></li>
-                </c:forEach>
-                <li class="space"></li>
-                <c:forEach items="${news}" var="new" begin="0" end="5">
-                    <li><a href="#">${new.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${new.ncreateDate}" />)</span></li>
-                </c:forEach>
-                <li class="space"></li>
-                <c:forEach items="${news}" var="new" begin="0" end="5">
-                    <li><a href="#">${new.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${new.ncreateDate}" />)</span></li>
-                </c:forEach>
+<%--                <c:forEach items="${news}" var="new" begin="0" end="4">--%>
+<%--                    <li><a href="#">${new.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${new.ncreateDate}" />)</span></li>--%>
+<%--                </c:forEach>--%>
+<%--                <li class="space"></li>--%>
+<%--                <c:forEach items="${news}" var="new" begin="5" end="9">--%>
+<%--                    <li><a href="#">${new.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${new.ncreateDate}" />)</span></li>--%>
+<%--                </c:forEach>--%>
+<%--                <li class="space"></li>--%>
+<%--                <c:forEach items="${news}" var="new" begin="0" end="5">--%>
+<%--                    <li><a href="#">${new.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${new.ncreateDate}" />)</span></li>--%>
+<%--                </c:forEach>--%>
+<%--                <li class="space"></li>--%>
+<%--                <c:forEach items="${news}" var="new" begin="0" end="5">--%>
+<%--                    <li><a href="#">${new.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${new.ncreateDate}" />)</span></li>--%>
+<%--                </c:forEach>--%>
+<%--                <li class="space"></li>--%>
+<%--                <c:forEach items="${news}" var="new" begin="0" end="5">--%>
+<%--                    <li><a href="#">${new.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${new.ncreateDate}" />)</span></li>--%>
+<%--                </c:forEach>--%>
                 <li class="space"></li>
             </ul>
     	</div>
