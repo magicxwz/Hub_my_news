@@ -35,7 +35,7 @@
     </select>
     <!---->
 
-    <!--根据主题id查询新闻-->
+    <!--根据id查询新闻-->
     <select id="selectNew" resultType="news">
         <include refid="my_news"/>
         where nid=#{nid}

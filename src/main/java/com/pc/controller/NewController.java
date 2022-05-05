@@ -33,6 +33,5 @@ public class NewController {
         List<News> news = newService.selectNewsntid(ntid);
         String s = JSON.toJSONString(news);
         return s;
-
     }
 }

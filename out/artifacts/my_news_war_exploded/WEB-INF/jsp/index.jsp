@@ -134,7 +134,7 @@
                 <ul class="class_date">
                     <li id="class_month">
                         <c:forEach items="${topics}" var="topicc" begin="0" end="10">
-                            <a href='index1.jsp?ntid=${topicc.tid}'><b>${topicc.tname}</b></a>
+                            <a href='javascript:zt(${topicc.tid})'><b>${topicc.tname}</b></a>
                         </c:forEach>
                     </li><li id="class_month">
                         <c:forEach items="${topics}" var="topicc" begin="11" end="20">
@@ -144,7 +144,7 @@
                 </ul>
                 <ul class="classlist">
                     <c:forEach items="${news}" var="newx" begin="0" end="4">
-                        <li><a href="javascript:zt(${newx.nid})">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
+                        <li><a href="${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
                     </c:forEach>
                     <li class="space"></li>
                     <c:forEach items="${news}" var="newx" begin="5" end="9">
@@ -208,12 +208,12 @@
 </body>
 </html>
 <script type="text/javascript">
-function zt(tnid){
+function zt(ntid){
     $.ajax({
         "url":"/News/newsn",//提交链接
         "type":"get",//提交类型
         "data":{
-            "tnid":tnid
+            "ntid":ntid
         },//提交值
         "dataType":"json",//返回类型
         "success":function(data){//返回类型的最终值

@@ -218,6 +218,14 @@ function zt(ntid){
         "dataType":"json",//返回类型
         "success":function(data){//返回类型的最终值
             console.log(data)
+            $(".classlist").remove();
+            $.each(data,function (index,item){
+                var nid=item.nid;
+                var ntitle=item.ntile;
+                console.log(nid)
+                console.log(ntitle)
+
+            })
         },
         "error":function(){//成功与否运行
             console.log("查询失败");
