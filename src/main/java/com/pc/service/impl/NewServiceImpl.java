@@ -34,4 +34,9 @@ public class NewServiceImpl implements NewService {
     public List<Comments> selectComments() {
         return newMapper.selectComments();
     }
+
+    @Override
+    public List<News> selectNewsntid(int ntid) {
+        return newMapper.selectNewsntid(ntid);
+    }
 }

@@ -15,6 +15,10 @@ public class NewController {
     @GetMapping("/newselect")
     public String selNews(Model model){
         model.addAttribute("news",newService.selectNews());
+        model.addAttribute("topics",newService.selectTopic());
+        model.addAttribute("gnxw",newService.selectNewsntid(1));
+        model.addAttribute("gjxw",newService.selectNewsntid(2));
+        model.addAttribute("wlxw",newService.selectNewsntid(5));
         return "index";
     }
 }
