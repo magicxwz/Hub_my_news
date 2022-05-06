@@ -217,8 +217,13 @@ function zt(ntid){
         "success":function(data){//返回类型的最终值
             data.reverse();
             console.log(data)
+            console.log(typeof (data))
             $(".classlist li").remove();
             var i=0;
+            if (data.length==0){
+                let li1=$("<li class=space>本主题新闻待补充</li>")
+                $(".classlist").append(li1)
+            }
             $.each(data,function (index,item){
                 if (i%5==0){
                    let li= $("<li class=space></li>");
