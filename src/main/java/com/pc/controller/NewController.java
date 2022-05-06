@@ -52,7 +52,11 @@ public class NewController {
     public String dlu(String username, String upwd,Model model){
         Users users = newService.selectUsersdl(username,upwd);
         model.addAttribute("uname",users.getUname());
-        System.out.println(users.getUname());
+        model.addAttribute("news",newService.selectNews());
+        model.addAttribute("topics",newService.selectTopic());
+        model.addAttribute("gnxw",newService.selectNewsntid(1));
+        model.addAttribute("gjxw",newService.selectNewsntid(2));
+        model.addAttribute("wlxw",newService.selectNewsntid(5));
         return "index";
     }
 

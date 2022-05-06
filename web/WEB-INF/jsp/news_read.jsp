@@ -11,11 +11,18 @@
 <body>
 <div id="header">
   <div id="top_login">
-    <label> 登录名 </label>
-    <input type="text" id="uname" value="" class="login_input" />
-    <label> 密&#160;&#160;码 </label>
-    <input type="password" id="upwd" value="" class="login_input" />
-    <input type="button" class="login_sub" value="登录"/>
+    <c:if test="${uname eq null}">
+      <form id="login" method="post" action="/News/dlu">
+        <label>登录名</label><input type="text" name="username" value="" class="login_input" />
+        <label>密&#160;&#160;码</label><input type="password" name="upwd" value="" class="login_input" />
+        <input type="submit" class="login_sub" value="登录" />
+      </form>
+    </c:if>
+    <c:if test="${uname ne null}">
+      <form id="login" method="post" action="javascript:void(0)">
+        <label>用户：</label><label>${uname}&#160;&#160;欢迎登陆</label>
+      </form>
+    </c:if>
     <label id="error"> </label>
     <a href="/News/newselect" class="login_link">返回首页</a> <img src="${pageContext.request.contextPath}/images/friend_logo.gif" alt="Google" id="friend_logo" /> </div>
   <div id="nav">
