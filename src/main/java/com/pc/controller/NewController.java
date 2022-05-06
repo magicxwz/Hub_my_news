@@ -1,6 +1,7 @@
 package com.pc.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.pc.beans.Comments;
 import com.pc.beans.News;
 import com.pc.beans.Users;
 import com.pc.service.NewService;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,12 +23,18 @@ public class NewController {
     private NewService newService;
     /*网页的主页面*/
     @GetMapping("/newselect")
-    public String newselect(Model model){
-        model.addAttribute("news",newService.selectNews());
-        model.addAttribute("topics",newService.selectTopic());
-        model.addAttribute("gnxw",newService.selectNewsntid(1));
-        model.addAttribute("gjxw",newService.selectNewsntid(2));
-        model.addAttribute("wlxw",newService.selectNewsntid(5));
+    public String newselect(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession(true);
+        session.setAttribute("news",newService.selectNews());
+        session.setAttribute("topics",newService.selectTopic());
+        session.setAttribute("gnxw",newService.selectNewsntid(1));
+        session.setAttribute("gjxw",newService.selectNewsntid(2));
+        session.setAttribute("wlxw",newService.selectNewsntid(5));
+//        model.addAttribute("news",newService.selectNews());
+//        model.addAttribute("topics",newService.selectTopic());
+//        model.addAttribute("gnxw",newService.selectNewsntid(1));
+//        model.addAttribute("gjxw",newService.selectNewsntid(2));
+//        model.addAttribute("wlxw",newService.selectNewsntid(5));
         return "index";
     }
     /*异步处理*/
@@ -42,22 +51,26 @@ public class NewController {
     public String news_read(@PathVariable int nid,Model model){
         News news = newService.selectNew(nid);
         model.addAttribute("newdg",news);
-        model.addAttribute("gnxw",newService.selectNewsntid(1));
-        model.addAttribute("gjxw",newService.selectNewsntid(2));
-        model.addAttribute("wlxw",newService.selectNewsntid(5));
         return "news_read";
     }
     /*登陆*/
     @PostMapping("/dlu")
-    public String dlu(String username, String upwd,Model model){
+    public String dlu(String username, String upwd,Model model,HttpSession session){
         Users users = newService.selectUsersdl(username,upwd);
-        model.addAttribute("uname",users.getUname());
-        model.addAttribute("news",newService.selectNews());
-        model.addAttribute("topics",newService.selectTopic());
-        model.addAttribute("gnxw",newService.selectNewsntid(1));
-        model.addAttribute("gjxw",newService.selectNewsntid(2));
-        model.addAttribute("wlxw",newService.selectNewsntid(5));
+        session.setAttribute("uname",users.getUname());
         return "index";
     }
-
+    /*退出登陆*/
+    @GetMapping("/tdlu")
+    public String tdlu(Model model,HttpSession session){
+        session.removeAttribute("uname");
+        return "index";
+    }
+    /*评论异步处理*/
+    @PostMapping("/plun")
+    @ResponseBody
+    public String plun(Comments comments){
+        newService.insertComments(comments);
+        return "a";
+    }
 }

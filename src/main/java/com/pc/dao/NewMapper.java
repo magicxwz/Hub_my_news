@@ -16,6 +16,7 @@ public interface NewMapper {
     Users selectUsersdl(@Param("uname") String uname,@Param("upwd") String upwd);
     List<Comments> selectComments();
     List<Comments> selectCommentss(int cnid);
+    int insertComments(Comments comments);
     List<News> selectNewsntid(int ntid);
     News selectNew(int nid);
 }

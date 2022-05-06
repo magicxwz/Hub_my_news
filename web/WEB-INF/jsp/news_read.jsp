@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>新闻中国</title>
 <link href="${pageContext.request.contextPath}/css/read.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js" charset="utf-8"></script>
 </head>
 <body>
 <div id="header">
@@ -19,8 +20,8 @@
       </form>
     </c:if>
     <c:if test="${uname ne null}">
-      <form id="login" method="post" action="javascript:void(0)">
-        <label>用户：</label><label>${uname}&#160;&#160;欢迎登陆</label>
+      <form id="login" method="#" action="javascript:void(0)">
+        <label>用户：</label><label>${uname}&#160;&#160;欢迎登陆</label>&#160;&#160;<a href="/News/tdlu"> 登出 </a>
       </form>
     </c:if>
     <label id="error"> </label>
@@ -102,19 +103,23 @@
         </table>
       </ul>
       <ul class="classlist">
-        <form action="#" method="post" onsubmit="return check()">
-          <input type="hidden" value="${newdg.nid}" name=""/>
+        <form action="javascript:void(0);" method="#">
+          <input type="hidden" value="${newdg.nid}" name="cnid"/>
+          <input id="day" type="hidden" value="" name="cdate"/>
           <table width="80%" align="center">
             <tr>
               <td> 评 论 </td>
             </tr>
             <tr>
-              <td> 用户名： </td>
-              <td>
-
-                <input id="cauthor" name="cauthor" value="这家伙很懒什么也没留下"/>
+              <td> 用户名：
+                <c:if test="${uname ne null}">
+                  <input id="cauthor" name="cauthor" value="${uname}"/>
+                </c:if>
+                <c:if test="${uname eq null}">
+                  <input id="cauthor" name="cauthor" value="这家伙很懒什么也没留下"/>
+                </c:if>
                 IP：
-                <input name="cip" value="127.0.0.1" readonly="readonly"/>
+                    <input name="cip" value="127.0.16.1" readonly="readonly"/>
               </td>
             </tr>
             <tr>
@@ -158,3 +163,64 @@
 </div>
 </body>
 </html>
+<script type="text/javascript">
+  $(function (){
+    var wait = 60;
+    function time(o) {
+      if (wait == 0) {
+        $(o).attr("disabled", false);
+        $(o).val(" 发表评论 ");
+        wait = 60;
+      } else {
+        $(o).attr("disabled", true);
+        o.val(wait + "秒后重新评论");
+        wait--;
+        setTimeout(function () {time(o);},1000);
+      }
+    }
+    $("[name='submit']").click(function (){
+      let cnid=$("[name='cnid']").val();
+      let cdate=$("[name='cdate']").val();
+      let cauthor=$("[name='cauthor']").val();
+      let cip=$("[name='cip']").val();
+      let ccontent=$("[name='ccontent']").val();
+      console.log(cnid)
+      console.log(cdate)
+      console.log(cauthor)
+      console.log(cip)
+      console.log(ccontent)
+      $.ajax({
+        "url":"/News/plun",//提交链接
+        "type":"post",//提交类型
+        "data":{
+          "cnid":cnid,
+          "cdate":cdate,
+          "cauthor":cauthor,
+          "cip":cip,
+          "ccontent":ccontent
+        },//提交值
+        "dataType":"text",//返回类型
+        "success":function(data){
+          if (data=="a"){
+            alert("评论成功！");
+            $("[name='ccontent']").val("");
+            let aa=$("[name='submit']");
+            time(aa);
+          }else{
+            alert("评论失败！");
+          }
+        },
+        "error":function(){//成功与否运行
+          console.log("查询失败");
+        }
+      })
+    })
+
+    setInterval(function(){
+      let today=new Date();
+      let sjrq=today.toLocaleString();
+      $("#day").val(sjrq);
+    },1000);
+  })
+
+</script>

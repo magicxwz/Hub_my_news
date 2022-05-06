@@ -41,6 +41,7 @@
         where nid=#{nid}
     </select>
     <resultMap id="commentsMap" type="news">
+        <result property="nid" column="nid"/>
         <association property="comments" column="nid" select="selectCommentss"/>
     </resultMap>
     <!--查询所有评论-->
@@ -74,4 +75,10 @@
         <include refid="my_users"/>
         where uname=#{uname} and upwd=#{upwd}
     </select>
+    <!---->
+
+    <!--增加评论-->
+    <insert id="insertComments" parameterType="comments" >
+        insert into comments(cnid, ccontent, cdate, cip, cauthor) value (#{cnid},#{ccontent},#{cdate},#{cip},#{cauthor})
+    </insert>
 </mapper>

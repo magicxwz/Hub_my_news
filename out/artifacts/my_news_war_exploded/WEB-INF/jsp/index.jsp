@@ -23,8 +23,8 @@
                 </form>
             </c:if>
             <c:if test="${uname ne null}">
-                <form id="login" method="post" action="javascript:void(0)">
-                    <label>ÓÃ»§£º</label><label>${uname}&#160;&#160;»¶Ó­µÇÂ½</label>
+                <form id="login" method="#" action="javascript:void(0)">
+                    <label>ÓÃ»§£º</label><label>${uname}&#160;&#160;»¶Ó­µÇÂ½</label>&#160;&#160;<a href="/News/tdlu"> µÇ³ö </a>
                 </form>
             </c:if>
             <img src="${pageContext.request.contextPath}/images/friend_logo.gif" alt="Google" id="friend_logo" />

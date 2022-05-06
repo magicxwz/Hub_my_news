@@ -48,6 +48,11 @@ public class NewServiceImpl implements NewService {
     }
 
     @Override
+    public int insertComments(Comments comments) {
+        return newMapper.insertComments(comments);
+    }
+
+    @Override
     public List<News> selectNewsntid(int ntid) {
         return newMapper.selectNewsntid(ntid);
     }
