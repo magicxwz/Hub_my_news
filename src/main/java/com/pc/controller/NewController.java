@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/News")
@@ -48,7 +50,7 @@ public class NewController {
     /*登陆*/
     @PostMapping("/dlu")
     public String dlu(String username, String upwd,Model model){
-        Users users = newService.selectUsersdl(username, upwd);
+        Users users = newService.selectUsersdl(username,upwd);
         model.addAttribute("uname",users.getUname());
         System.out.println(users.getUname());
         return "index";

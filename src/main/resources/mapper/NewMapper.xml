@@ -70,8 +70,8 @@
     </select>
     <!---->
     <!--登陆-->
-    <select id="selectUsersdl" parameterType="string" resultType="users">
+    <select id="selectUsersdl" parameterType="map" resultType="users">
         <include refid="my_users"/>
-        where uname=#{username} and upwd=#{upwd}
+        where uname=#{uname} and upwd=#{upwd}
     </select>
 </mapper>

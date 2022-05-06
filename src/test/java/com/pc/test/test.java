@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class test {
 
@@ -34,7 +36,7 @@ public class test {
     public void t3(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         NewService newServiceImpl = (NewService) context.getBean("newServiceImpl");
-        Users users = newServiceImpl.selectUsersdl("1", "1");
+        Users users = newServiceImpl.selectUsersdl("1","1");
         System.out.println(users);
     }
 }

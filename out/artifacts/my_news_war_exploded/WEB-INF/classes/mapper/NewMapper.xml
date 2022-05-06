@@ -36,9 +36,17 @@
     <!---->
 
     <!--根据id查询新闻-->
-    <select id="selectNew" resultType="news">
+    <select id="selectNew" resultMap="commentsMap">
         <include refid="my_news"/>
         where nid=#{nid}
+    </select>
+    <resultMap id="commentsMap" type="news">
+        <association property="comments" column="nid" select="selectCommentss"/>
+    </resultMap>
+    <!--查询所有评论-->
+    <select id="selectCommentss" resultType="comments">
+        <include refid="my_comments"/>
+        where cnid=#{nid}
     </select>
     <!---->
 
@@ -61,5 +69,9 @@
         where tid=#{ntid}
     </select>
     <!---->
-
+    <!--登陆-->
+    <select id="selectUsersdl" parameterType="map" resultType="users">
+        <include refid="my_users"/>
+        where uname=#{uname} and upwd=#{upwd}
+    </select>
 </mapper>

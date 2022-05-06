@@ -17,7 +17,7 @@
     <input type="password" id="upwd" value="" class="login_input" />
     <input type="button" class="login_sub" value="登录"/>
     <label id="error"> </label>
-    <a href="index.jsp" class="login_link">返回首页</a> <img src="${pageContext.request.contextPath}/images/friend_logo.gif" alt="Google" id="friend_logo" /> </div>
+    <a href="/News/newselect" class="login_link">返回首页</a> <img src="${pageContext.request.contextPath}/images/friend_logo.gif" alt="Google" id="friend_logo" /> </div>
   <div id="nav">
     <div id="logo"> <img src="${pageContext.request.contextPath}/images/logo.jpg" alt="新闻中国" /> </div>
     <div id="a_b01"> <img src="${pageContext.request.contextPath}/images/a_b01.gif" alt="" /> </div>
