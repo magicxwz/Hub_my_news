@@ -11,7 +11,9 @@ public interface NewMapper {
     List<News> selectNews();
     List<Topic> selectTopic();
     List<Users> selectUsers();
+    Users selectUsersdl(String username,String upwd);
     List<Comments> selectComments();
+    List<Comments> selectCommentss(int cnid);
     List<News> selectNewsntid(int ntid);
     News selectNew(int nid);
 }

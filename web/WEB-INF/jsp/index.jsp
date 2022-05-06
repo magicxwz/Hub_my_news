@@ -15,11 +15,18 @@
 <div style="margin:0 auto;width:1000px">
     <div id="header">
         <div id="top_login">
-            <form id="login" method="post" action="login.jsp">
-                <label>µÇÂ¼Ãû</label><input type="text" name="username" value="" class="login_input" />
-                <label>ÃÜ&#160;&#160;Âë</label><input type="password" name="upwd" value="" class="login_input" />
-                <input type="submit" class="login_sub" value="µÇÂ¼" />
-            </form>
+            <c:if test="${uname eq null}">
+                <form id="login" method="post" action="/News/dlu">
+                    <label>µÇÂ¼Ãû</label><input type="text" name="username" value="" class="login_input" />
+                    <label>ÃÜ&#160;&#160;Âë</label><input type="password" name="upwd" value="" class="login_input" />
+                    <input type="submit" class="login_sub" value="µÇÂ¼" />
+                </form>
+            </c:if>
+            <c:if test="${uname ne null}">
+                <form id="login" method="post" action="javascript:void(0)">
+                    <label>ÓÃ»§£º</label><label>${uname}&#160;&#160;»¶Ó­µÇÂ½</label>
+                </form>
+            </c:if>
             <img src="${pageContext.request.contextPath}/images/friend_logo.gif" alt="Google" id="friend_logo" />
         </div>
         <div id="nav">
@@ -105,7 +112,7 @@
             <div class="side_list">
                 <ul>
                     <c:forEach items="${gnxw}" var="xw" begin="0" end="5">
-                    <li> <a href='${xw.nid}'><b> ${xw.ntitle} </b></a> </li>
+                    <li> <a href='/News/new/${xw.nid}'><b> ${xw.ntitle} </b></a> </li>
                     </c:forEach>
                 </ul>
             </div>
@@ -114,7 +121,7 @@
             <div class="side_list">
                 <ul>
                     <c:forEach items="${gjxw}" var="xw" begin="0" end="5">
-                        <li> <a href='${xw.nid}'><b> ${xw.ntitle} </b></a> </li>
+                        <li> <a href='/News/new/${xw.nid}'><b> ${xw.ntitle} </b></a> </li>
                     </c:forEach>
                 </ul>
             </div>
@@ -123,7 +130,7 @@
             <div class="side_list">
                 <ul>
                     <c:forEach items="${wlxw}" var="xw" begin="0" end="5">
-                        <li> <a href='${xw.nid}'><b> ${xw.ntitle} </b></a> </li>
+                        <li> <a href='/News/new/${xw.nid}'><b> ${xw.ntitle} </b></a> </li>
                     </c:forEach>
                 </ul>
             </div>
@@ -144,23 +151,23 @@
                 </ul>
                 <ul class="classlist">
                     <c:forEach items="${news}" var="newx" begin="0" end="4">
-                        <li><a href="${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
+                        <li><a href="/News/new/${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
                     </c:forEach>
                     <li class="space"></li>
                     <c:forEach items="${news}" var="newx" begin="5" end="9">
-                        <li><a href="${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
+                        <li><a href="/News/new/${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
                     </c:forEach>
                     <li class="space"></li>
                     <c:forEach items="${news}" var="newx" begin="10" end="14">
-                        <li><a href="${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
+                        <li><a href="/News/new/${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
                     </c:forEach>
                     <li class="space"></li>
                     <c:forEach items="${news}" var="newx" begin="15" end="19">
-                        <li><a href="${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
+                        <li><a href="/News/new/${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
                     </c:forEach>
                     <li class="space"></li>
                     <c:forEach items="${news}" var="newx" begin="20" end="24">
-                        <li><a href="${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
+                        <li><a href="/News/new/${newx.nid}">${newx.ntitle}</a><span>(<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${newx.ncreateDate}" />)</span></li>
                     </c:forEach>
                     <li class="space"></li>
                 </ul>

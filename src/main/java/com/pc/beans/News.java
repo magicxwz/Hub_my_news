@@ -5,12 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class News {
     private Topic topics;
+    private List<Comments> comments;
     private int nid;
     private int ntid;
     private String ntitle;

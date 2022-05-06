@@ -31,8 +31,18 @@ public class NewServiceImpl implements NewService {
     }
 
     @Override
+    public Users selectUsersdl(String username, String upwd) {
+        return newMapper.selectUsersdl(username,upwd);
+    }
+
+    @Override
     public List<Comments> selectComments() {
         return newMapper.selectComments();
+    }
+
+    @Override
+    public List<Comments> selectCommentss(int cnid) {
+        return newMapper.selectCommentss(cnid);
     }
 
     @Override
