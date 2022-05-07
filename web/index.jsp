@@ -14,5 +14,11 @@
   </head>
   <body>
   <h1><a href="/News/newselect">新闻首页</a></h1>
+  <h1><a href="/Topic/admin">admin.jsp</a></h1>
+  <h1><a href="/Topic/news_add">news_add.jsp</a></h1>
+  <h1><a href="/Topic/register">register.jsp</a></h1>
+  <h1><a href="/Topic/register2">register2.jsp</a></h1>
+  <h1><a href="/Topic/topic_add">topic_add.jsp</a></h1>
+  <h1><a href="/Topic/topicList">topicList.jsp</a></h1>
   </body>
 </html>

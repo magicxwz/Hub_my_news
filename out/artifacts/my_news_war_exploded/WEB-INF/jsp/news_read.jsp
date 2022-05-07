@@ -111,8 +111,7 @@
               <td> 评 论 </td>
             </tr>
             <tr>
-              <td> 用户名： </td>
-              <td>
+              <td> 用户名：
                 <c:if test="${uname ne null}">
                   <input id="cauthor" name="cauthor" value="${uname}"/>
                 </c:if>

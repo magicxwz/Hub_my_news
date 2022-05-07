@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -16,10 +17,21 @@
 </div>
 
 <div id="admin_bar">
-<div id="status">管理员： 登录  &#160;&#160;&#160;&#160;    <a href="#">login out</a></div>
-    <div id="channel">
-    	
+    <div id="status">
+        <c:if test="${uname eq null}">
+            <form id="login" method="post" action="/News/dlu">
+                <label>登录名</label><input type="text" name="username" value="" class="login_input" />
+                <label>密&#160;&#160;码</label><input type="password" name="upwd" value="" class="login_input" />
+                <input type="submit" class="login_sub" value="登录" />
+            </form>
+        </c:if>
+        <c:if test="${uname ne null}">
+            <form id="login" method="#" action="javascript:void(0)">
+                <label>用户：</label><label>${uname}&#160;&#160;欢迎登陆</label>&#160;&#160;<a href="/News/newselect"> 新闻主页 </a>&#160;&#160;<a href="/News/tdlu"> 登出 </a>
+            </form>
+        </c:if>
     </div>
+    <div id="channel"></div>
 </div>
 
 <div id="main">
@@ -28,153 +40,16 @@
             <li><a href="#">添加新闻</a></li>
             <li><a href="#">编辑新闻</a></li>
             <li><a href="#">查找新闻</a></li>
-            <li><a href="#">添加主题</a></li>
-            <li><a href="#">编辑主题</a></li>
+            <li><a href="/Topic/topic_add">添加主题</a></li>
+            <li><a href="/Topic/topicList">编辑主题</a></li>
         </ul>
     </div>
-<div id="opt_area">	
-
-
-<ul class="classlist">
-<li>
-迟福林：“十二五”改革应向消费大国转型
-<span>
-作者：
-news                                              
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-
-<li>
-伊朗称放弃美元作为外储地位 人民币或上位
-<span>
-作者：
-out                                               
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-<li>
-“持械抢劫，当场击毙” 浙江永康现超雷人标语
-<span>
-作者：
-news                                              
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-<li>
-国内成品油价格上调几成定局
-<span>
-作者：
-news                                              
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-<li>
-俄数百所幼儿园和学校因流感停课
-<span>
-作者：
-news                                              
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-<li class='space'></li>
-<li>
-喀布尔市中心传出爆炸和枪声 目前原因不明
-<span>
-作者：
-out                                               
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-<li>
-国台办介绍大陆高校加大对台招生力度情况
-<span>
-作者：
-news                                              
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-<li>
-国台办将授权福建等六省市部分赴台管理审批权
-<span>
-作者：
-news                                              
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-<li>
-人保部将首次就同工同酬做出规定
-<span>
-作者：
-news                                              
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-<li>
-重庆警方否认被围殴致死吸毒者曾针刺民众
-<span>
-作者：
-news                                              
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-<li class='space'></li>
-<li>
-美国一名外交官辞职抗议美对阿富汗政策
-<span>
-作者：
-out                                               
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-<li>
-埃及交通部长因致18死火车相撞事故辞职
-<span>
-作者：
-out                                               
-&#160;&#160;&#160;&#160;
-<a href='#'>修改</a>
-&#160;&#160;&#160;&#160;
-<a href='#'>删除</a>
-</span>
-</li>
-
-
-</ul>
-    	
+    <div id="opt_area">
+        <ul class="classlist">
+            <c:forEach items="news" var="newss">
+                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='#'>修改</a>&#160;&#160;&#160;&#160;<a href='#'>删除</a></span></li>
+            </c:forEach>
+        </ul>
     </div>
 </div>
 
