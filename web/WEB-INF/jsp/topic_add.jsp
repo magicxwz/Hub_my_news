@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
-<div style="margin: 400px auto;">
+<div style="margin: 400px 400px;">
 	<h1 id="opt_type">
 		Ìí¼ÓÖ÷Ìâ£º
 	</h1>

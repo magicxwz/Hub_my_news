@@ -12,7 +12,7 @@
 	<div id="welcome">欢迎使用新闻管理系统！</div>
     <div id="nav">
     	<div id="logo"><img src="${pageContext.request.contextPath}/images/logo.jpg" alt="新闻中国" /></div>
-        <div id="a_b01"><img src="${pageContext.request.contextPath}/images/a_b01.gif" alt="" /></div>
+        <div id="a_b01"><img src="${pageContext.request.contextPath}/images/a_b01.gif" alt="体育频道" /></div>
     </div>
 </div>
 
@@ -24,6 +24,7 @@
                 <label>密&#160;&#160;码</label><input type="password" name="upwd" value="" class="login_input" />
                 <input type="submit" class="login_sub" value="登录" />
             </form>
+            <a href="/Topic/register2">新人用户注册</a>
         </c:if>
         <c:if test="${uname ne null}">
             <form id="login" method="#" action="javascript:void(0)">
@@ -37,14 +38,18 @@
 <div id="main">
     <div id="opt_list">
     	<ul>
-            <li><a href="#">添加新闻</a></li>
+            <li><a href="/Topic/news_add">添加新闻</a></li>
             <li><a href="#">编辑新闻</a></li>
-            <li><a href="#">查找新闻</a></li>
+            <li><a href="/Topic/cahzaoxw">查找新闻</a></li>
             <li><a href="/Topic/topic_add">添加主题</a></li>
             <li><a href="/Topic/topicList">编辑主题</a></li>
         </ul>
     </div>
     <div id="opt_area">
+        <form  action = "/" method="post" >
+            <input type="text" maxlength="50" name="ntitle" value="" placeholder="请输入需要查找的新闻"/>
+            <input type="submit"  title="搜索" value="搜索" />
+        </form>
         <ul class="classlist">
             <c:forEach items="${sessionScope.news}" var="newss">
                 <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='#'>修改</a>&#160;&#160;&#160;&#160;<a href='#'>删除</a></span></li>
@@ -52,7 +57,6 @@
         </ul>
     </div>
 </div>
-
 <div id="site_link">
 	<a href="#">关于我们</a><span>|</span>
     <a href="#">Aboue Us</a><span>|</span>
@@ -64,14 +68,11 @@
     <a href="#">网站地图</a><span>|</span>
     <a href="#">留言反馈</a>
 </div>
-
 <div id="footer">
 	<p class="">24小时客户服务热线：010-68988888  &#160;&#160;&#160;&#160;  <a href="#">常见问题解答</a>  &#160;&#160;&#160;&#160;  新闻热线：010-627488888<br />
 	文明办网文明上网举报电话：010-627488888  &#160;&#160;&#160;&#160;  举报邮箱：<a href="#">jubao@jb-aptech.com.cn</a></p>
     <p class="copyright">Copyright &copy; 1999-2009 News China gov, All Right Reserver<br />
 	新闻中国   版权所有</p>	
 </div>
-
-
 </body>
 </html>

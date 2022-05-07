@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
-<div style="margin: auto 200px;">
+<div style="margin: 400px auto;">
 	<h1 id="opt_type">
 		添加主题：
 	</h1>
@@ -14,6 +14,6 @@
 		<input type="submit" value="提交" class="opt_sub" />
 		<input type="reset" value="重置" class="opt_sub" />
 	</form>
-	<h3><a href=""></a></h3>
+	<h3><a href="/Topic/topicList">返回编辑主题</a></h3>
 </div>
 
