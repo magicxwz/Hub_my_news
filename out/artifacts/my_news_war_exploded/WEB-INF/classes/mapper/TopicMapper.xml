@@ -16,5 +16,13 @@
         select cid, cnid, ccontent, cdate, cip, cauthor from comments
     </sql>
     <!---->
-
+    <!--添加新闻-->
+    <insert id="InsertNew" parameterType="news" >
+        insert into news(ntid, ntitle, nauthor, ncreateDate, npicPath, ncontent, nmodifyDate, nsummary)
+        value (#{ntid},#{ntitle},#{nauthor},#{ncreateDate},#{npicPath},#{ncontent},#{nmodifyDate},#{nsummary})
+    </insert>
+    <!--添加主题-->
+    <insert id="InsertTopic" parameterType="topic">
+        insert into topic(tname) value (#{tname})
+    </insert>
 </mapper>

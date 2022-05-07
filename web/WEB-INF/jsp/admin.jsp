@@ -48,7 +48,7 @@
     <div id="opt_area">
         <ul class="classlist">
             <c:forEach items="${sessionScope.news}" var="newss">
-                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='#'>修改</a>&#160;&#160;&#160;&#160;<a href='#'>删除</a></span></li>
+                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='${newss.nid}'>修改</a>&#160;&#160;&#160;&#160;<a href='${newss.nid}'>删除</a></span></li>
             </c:forEach>
         </ul>
     </div>

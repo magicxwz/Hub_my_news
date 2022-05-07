@@ -23,8 +23,8 @@
                 <label>登录名</label><input type="text" name="username" value="" class="login_input" />
                 <label>密&#160;&#160;码</label><input type="password" name="upwd" value="" class="login_input" />
                 <input type="submit" class="login_sub" value="登录" />
+                <a href="/Topic/register2">新人用户注册</a>
             </form>
-            <a href="/Topic/register2">新人用户注册</a>
         </c:if>
         <c:if test="${uname ne null}">
             <form id="login" method="#" action="javascript:void(0)">
@@ -48,7 +48,7 @@
     <div id="opt_area">
         <ul class="classlist">
             <c:forEach items="${sessionScope.news}" var="newss">
-                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='#'>修改</a>&#160;&#160;&#160;&#160;<a href='#'>删除</a></span></li>
+                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='${newss.nid}'>修改</a>&#160;&#160;&#160;&#160;<a href='${newss.nid}'>删除</a></span></li>
             </c:forEach>
         </ul>
     </div>

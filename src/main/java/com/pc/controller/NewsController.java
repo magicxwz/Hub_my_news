@@ -16,9 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 查询Controller
+ */
 @Controller
 @RequestMapping("/News")
-public class SelectController {
+public class NewsController {
     @Autowired
     private NewService newService;
     /*网页的主页面*/

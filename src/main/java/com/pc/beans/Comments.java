@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
+/**
+ * 评论实体类
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
