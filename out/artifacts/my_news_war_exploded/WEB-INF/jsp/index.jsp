@@ -24,7 +24,7 @@
             </c:if>
             <c:if test="${uname ne null}">
                 <form id="login" method="#" action="javascript:void(0)">
-                    <label>用户：</label><label>${uname}&#160;&#160;欢迎登陆</label>&#160;&#160;<a href="/News/tdlu"> 登出 </a>
+                    <label>用户：</label><label>${uname}&#160;&#160;欢迎登陆</label>&#160;&#160;<a href="/Topic/admin"> 管理页面 </a>&#160;&#160;<a href="/News/tdlu"> 登出 </a>
                 </form>
             </c:if>
             <img src="${pageContext.request.contextPath}/images/friend_logo.gif" alt="Google" id="friend_logo" />

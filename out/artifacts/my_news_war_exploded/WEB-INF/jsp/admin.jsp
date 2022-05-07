@@ -16,10 +16,21 @@
 </div>
 
 <div id="admin_bar">
-<div id="status">管理员： 登录  &#160;&#160;&#160;&#160;    <a href="#">login out</a></div>
-    <div id="channel">
-    	
+    <div id="status">
+        <c:if test="${uname eq null}">
+            <form id="login" method="post" action="/News/dlu">
+                <label>登录名</label><input type="text" name="username" value="" class="login_input" />
+                <label>密&#160;&#160;码</label><input type="password" name="upwd" value="" class="login_input" />
+                <input type="submit" class="login_sub" value="登录" />
+            </form>
+        </c:if>
+        <c:if test="${uname ne null}">
+            <form id="login" method="#" action="javascript:void(0)">
+                <label>用户：</label><label>${uname}&#160;&#160;欢迎登陆</label>&#160;&#160;<a href="/News/newselect"> 新闻主页 </a>&#160;&#160;<a href="/News/tdlu"> 登出 </a>
+            </form>
+        </c:if>
     </div>
+    <div id="channel"></div>
 </div>
 
 <div id="main">
@@ -28,8 +39,8 @@
             <li><a href="#">添加新闻</a></li>
             <li><a href="#">编辑新闻</a></li>
             <li><a href="#">查找新闻</a></li>
-            <li><a href="#">添加主题</a></li>
-            <li><a href="#">编辑主题</a></li>
+            <li><a href="/Topic/topic_add">添加主题</a></li>
+            <li><a href="/Topic/topicList">编辑主题</a></li>
         </ul>
     </div>
 <div id="opt_area">	

@@ -29,7 +29,7 @@
 			<TABLE border="0" cellpadding="0" cellspacing="0" align="center">
 				<TR>
 					<TD height="108" colspan="2">
-						<IMG src="../Images/top.jpg">
+						<IMG src="${pageContext.request.contextPath}/images/top.jpg">
 					</TD>
 				</TR>
 				<TR>
