@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/Topic")
-public class TopicController {
+public class UpdateController {
 
     /*新闻添加*/
     @RequestMapping("/news_add")

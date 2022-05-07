@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/News")
-public class NewController {
+public class SelectController {
     @Autowired
     private NewService newService;
     /*网页的主页面*/

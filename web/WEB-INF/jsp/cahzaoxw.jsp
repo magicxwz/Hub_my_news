@@ -23,8 +23,9 @@
                 <label>登录名</label><input type="text" name="username" value="" class="login_input" />
                 <label>密&#160;&#160;码</label><input type="password" name="upwd" value="" class="login_input" />
                 <input type="submit" class="login_sub" value="登录" />
+                <a href="/Topic/register2">新人用户注册</a>
             </form>
-            <a href="/Topic/register2">新人用户注册</a>
+
         </c:if>
         <c:if test="${uname ne null}">
             <form id="login" method="#" action="javascript:void(0)">
@@ -39,7 +40,7 @@
     <div id="opt_list">
     	<ul>
             <li><a href="/Topic/news_add">添加新闻</a></li>
-            <li><a href="#">编辑新闻</a></li>
+            <li><a href="/Topic/news_update">编辑新闻</a></li>
             <li><a href="/Topic/cahzaoxw">查找新闻</a></li>
             <li><a href="/Topic/topic_add">添加主题</a></li>
             <li><a href="/Topic/topicList">编辑主题</a></li>
