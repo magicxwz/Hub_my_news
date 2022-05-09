@@ -33,4 +33,9 @@
     <select id="getcount" resultType="int">
         SELECT COUNT(1) FROM news
     </select>
+    <!--查找新闻-->
+    <select id="selectNewscz" resultType="news" parameterType="string">
+        <include refid="my_news"/>
+        where ntitle like "%"#{xw}"%"
+    </select>
 </mapper>

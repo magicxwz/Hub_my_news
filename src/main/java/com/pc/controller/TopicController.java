@@ -110,6 +110,13 @@ public class TopicController {
     public String cahzaoxw(){
         return "cahzaoxw";
     }
-
+    /*模糊查找新闻*/
+    @PostMapping("/mhcx/{xw}")
+    @ResponseBody
+    public String mhcx(@PathVariable String xw){
+        List<News> news = topicService.selectNewscz(xw);
+        String s = JSON.toJSONString(news)5
+        return s;
+    }
 
 }

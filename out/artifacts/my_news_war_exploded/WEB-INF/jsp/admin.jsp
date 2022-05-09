@@ -89,13 +89,11 @@
             "dataType":"json",//返回类型
             "success":function(data){
                 console.log(data);
-                alert("进来了");
                 $(".classlist li").remove();
                 $.each(data.news,function (index,item){
                     let ntitle=item.ntitle;
                     let nauthor=item.nauthor;
                     let nid=item.nid;
-                    console.log(ntitle);
                     let lis=$("<li>"+ntitle+"<span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='"+nid+"'>删除</a></span></li>");
                     $(".classlist").append(lis);
                 });
@@ -103,7 +101,6 @@
                 $(".nextPages").attr("href","javascript:fy("+(data.page.pagey-1)+")");//上一页
                 $(".nextPagex").attr("href","javascript:fy("+(data.page.pagey+1)+")");//下一页
                 $(".aa").text(data.page.pagey);
-                console.log(data.page.pagey);
             },
             "error":function(){//成功与否运行
                 console.log("查询失败");

@@ -36,4 +36,9 @@ public class TopicServiceImpl implements TopicService {
     public int getcount() {
         return topicMapper.getcount();
     }
+
+    @Override
+    public List<News> selectNewscz(String xw) {
+        return topicMapper.selectNewscz(xw);
+    }
 }

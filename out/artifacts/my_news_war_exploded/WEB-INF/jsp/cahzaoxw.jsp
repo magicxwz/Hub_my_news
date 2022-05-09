@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
 <title>管理后台</title>
 <link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js" charset="utf-8"></script>
 </head>
 <body>
 <div id="header">
@@ -47,12 +48,11 @@
         </ul>
     </div>
     <div id="opt_area">
-        <form  action = "/" method="post" >
-            <input type="text" maxlength="50" name="ntitle" value="" placeholder="请输入需要查找的新闻"/>
-            <input type="submit"  title="搜索" value="搜索" />
+        <form  action = "javascript:void(0);" method="post" >
+            <h2><input type="text" maxlength="50" name="ntitle" value="" placeholder="请输入需要查找的新闻"/><input type="submit" name="submit"  title="搜索" value="搜索" /></h2>
         </form>
         <ul class="classlist">
-            <c:forEach items="${sessionScope.news}" var="newss">
+            <c:forEach items="${sessionScope.news}" var="newss" begin="0" end="20">
                 <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='#'>修改</a>&#160;&#160;&#160;&#160;<a href='#'>删除</a></span></li>
             </c:forEach>
         </ul>
@@ -77,3 +77,45 @@
 </div>
 </body>
 </html>
+<script type="text/javascript">
+    $(function (){
+        $("[name='submit']").click(function (){
+            let xw=$("[name='ntitle']").val();
+            console.log(xw);
+            $.ajax({
+                "url":"/Topic/mhcx/"+xw,//提交链接
+                "type":"post",//提交类型
+                "data":{},//提交值
+                "dataType":"json",//返回类型
+                "success":function(data){
+                    console.log(data);
+                    console.log(typeof (data))
+                    console.log(data.length ==0)
+                    $(".classlist li").remove();
+                    if (data.length ==0){
+                        let lis=$("<li>没查询到相关新闻</li>");
+                        $(".classlist").append(lis);
+                    }
+                    if (JSON.stringify(data)=='[]'){
+                        let lis=$("<li>没查询到相关新闻</li>");
+                        $(".classlist").append(lis);
+                    }
+                    if (JSON.stringify(data)=='[]'/data.length ==0){
+                        let lis=$("<li>没查询到相关新闻</li>");
+                        $(".classlist").append(lis);
+                    }
+                    $.each(data,function (index,item){
+                        let ntitle=item.ntitle;
+                        let nauthor=item.nauthor;
+                        let nid=item.nid;
+                        let lis=$("<li>"+ntitle+"<span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='"+nid+"'>删除</a></span></li>");
+                        $(".classlist").append(lis);
+                    });
+                },
+                "error":function(){//成功与否运行
+                    console.log("查询失败");
+                }
+            })
+        })
+    })
+</script>

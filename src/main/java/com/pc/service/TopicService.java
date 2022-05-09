@@ -2,6 +2,7 @@ package com.pc.service;
 
 import com.pc.beans.News;
 import com.pc.beans.Topic;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,8 @@ public interface TopicService {
      */
     List<News> SelectNewsfy(int y, int h);
     int getcount();
+    /**
+     * 查找新闻 模糊查询
+     * */
+    List<News> selectNewscz(@Param("xw") String xw);
 }
