@@ -21,4 +21,9 @@ public interface TopicMapper {
      * 查找新闻 模糊查询
      * */
     List<News> selectNewscz(@Param("xw") String xw);
+    /**
+     * 删除新闻 跟子删除
+     * */
+    int delComm(int cnid);
+    int delNew(int nid);
 }

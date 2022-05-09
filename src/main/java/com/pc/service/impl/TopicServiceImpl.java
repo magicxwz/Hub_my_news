@@ -41,4 +41,14 @@ public class TopicServiceImpl implements TopicService {
     public List<News> selectNewscz(String xw) {
         return topicMapper.selectNewscz(xw);
     }
+    /*删除新闻 跟子外键删除*/
+    @Override
+    public int delComm(int cnid) {
+        return topicMapper.delComm(cnid);
+    }
+
+    @Override
+    public int delNew(int nid) {
+        return topicMapper.delNew(nid);
+    }
 }

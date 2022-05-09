@@ -41,6 +41,14 @@ public class TopicController {
         session.setAttribute("json",json);
         return "admin";
     }
+    /*删除新闻*/
+    @PostMapping("/scxw/{id}")
+    @ResponseBody
+    public int admin(@PathVariable int id){
+        topicService.delComm(id);
+        int i = topicService.delNew(id);
+        return i;
+    }
     /*分页查询*/
     @GetMapping("/fycx/{y}")
     @ResponseBody
@@ -115,7 +123,7 @@ public class TopicController {
     @ResponseBody
     public String mhcx(@PathVariable String xw){
         List<News> news = topicService.selectNewscz(xw);
-        String s = JSON.toJSONString(news)5
+        String s = JSON.toJSONString(news);
         return s;
     }
 
