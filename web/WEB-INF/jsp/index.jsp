@@ -146,7 +146,7 @@
                         </c:forEach>
                     </li><li id="class_month">
                         <c:forEach items="${topics}" var="topicc" begin="11" end="20">
-                            <a href='index1.jsp?ntid=${topicc.tid}'><b>${topicc.tname}</b></a>
+                            <a href='javascript:zt(${topicc.tid})'><b>${topicc.tname}</b></a>
                         </c:forEach>
                 </li>
                 </ul>

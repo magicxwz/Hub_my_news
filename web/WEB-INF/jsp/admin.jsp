@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
 <title>管理后台</title>
 <link href="${pageContext.request.contextPath}/css/admin.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js" charset="utf-8"></script>
 </head>
 <body>
 <div id="header">
@@ -47,10 +48,16 @@
     </div>
     <div id="opt_area">
         <ul class="classlist">
-            <c:forEach items="${sessionScope.news}" var="newss">
+            <c:forEach items="${sessionScope.json.news}" var="newss">
                 <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='${newss.nid}'>修改</a>&#160;&#160;&#160;&#160;<a href='${newss.nid}'>删除</a></span></li>
             </c:forEach>
         </ul>
+        <h2><span>数据总行数${sessionScope.json.page.count}</span>当前<span class="aa">${sessionScope.json.page.pagey }</span> / ${sessionScope.json.page.totalCount }
+        <a href="javascript:fy(1)">首    页</a>
+        <a class="nextPages" href="javascript:fy(${sessionScope.json.page.pagey-1 })">上一页</a>
+        <a class="nextPagex" href="javascript:fy(${sessionScope.json.page.pagey+1 });">下一页</a>
+        <a class="lastPage" href="javascript:fy(${sessionScope.json.page.totalCount });">页    尾</a>
+        <%--<a href="Servlet?zz=test&page=1">跳</a>--%></h2>
     </div>
 </div>
 
@@ -65,14 +72,61 @@
     <a href="#">网站地图</a><span>|</span>
     <a href="#">留言反馈</a>
 </div>
-
 <div id="footer">
 	<p class="">24小时客户服务热线：010-68988888  &#160;&#160;&#160;&#160;  <a href="#">常见问题解答</a>  &#160;&#160;&#160;&#160;  新闻热线：010-627488888<br />
 	文明办网文明上网举报电话：010-627488888  &#160;&#160;&#160;&#160;  举报邮箱：<a href="#">jubao@jb-aptech.com.cn</a></p>
     <p class="copyright">Copyright &copy; 1999-2009 News China gov, All Right Reserver<br />
 	新闻中国   版权所有</p>	
 </div>
-
-
 </body>
 </html>
+<script type="text/javascript">
+    function fy(y){
+        $.ajax({
+            "url":"/Topic/fycx/"+y,//提交链接
+            "type":"get",//提交类型
+            "data":{},//提交值
+            "dataType":"json",//返回类型
+            "success":function(data){
+                console.log(data);
+                $(".classlist li").remove();
+                $.each(data.news,function (index,item){
+                    let ntitle=item.ntitle;
+                    let nauthor=item.nauthor;
+                    let nid=item.nid;
+                    let lis=$("<li>"+ntitle+"<span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='"+nid+"'>删除</a></span></li>");
+                    $(".classlist").append(lis);
+                });
+                //修改翻页链接
+                $(".nextPages").attr("href","javascript:fy("+(data.page.pagey-1)+")");//上一页
+                $(".nextPagex").attr("href","javascript:fy("+(data.page.pagey+1)+")");//下一页
+                $(".aa").text(data.page.pagey);
+            },
+            "error":function(){//成功与否运行
+                console.log("查询失败");
+            }
+        })
+    }
+    //删除
+    function sc(aa){
+        let xbiao=$(this).index();
+        console.log(xbiao);
+        $.ajax({
+            "url":"Servlet",//提交链接
+            "type":"get",//提交类型
+            "data":{"zz":"scyh","id":aa},//提交值
+            "dataType":"text",//返回类型
+            "success":function(result){//返回类型的最终值
+                if(result){
+                    $("tr:eq("+xbiao+")").remove();
+                    alert("删除成功");
+                }else{
+                    alert("删除失败2")
+                }
+            },
+            "error":function(){//成功与否运行
+                alert("删除失败")
+            }
+        })
+    };
+</script>

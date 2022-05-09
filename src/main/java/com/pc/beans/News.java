@@ -16,6 +16,9 @@ import java.util.List;
 public class News {
     private Topic topics;
     private List<Comments> comments;
+
+
+
     private int nid;
     private int ntid;
     private String ntitle;

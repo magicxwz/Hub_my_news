@@ -7,6 +7,8 @@ import com.pc.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 添加的业务层
  */
@@ -23,5 +25,15 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public int InsertTopic(Topic topic) {
         return topicMapper.InsertTopic(topic);
+    }
+
+    @Override
+    public List<News> SelectNewsfy(int y, int h) {
+        return topicMapper.SelectNewsfy((y-1)*h,h);
+    }
+
+    @Override
+    public int getcount() {
+        return topicMapper.getcount();
     }
 }

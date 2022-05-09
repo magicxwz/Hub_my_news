@@ -1,14 +1,20 @@
 package com.pc.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.pc.beans.Json;
 import com.pc.beans.News;
+import com.pc.beans.Page;
 import com.pc.beans.Topic;
+import com.pc.service.NewService;
 import com.pc.service.TopicService;
 import com.pc.service.impl.TopicServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * 添加Controller
@@ -18,10 +24,44 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TopicController {
     @Autowired
     private TopicService topicService;
+    @Autowired
+    private NewService newService;
     /*管理页面*/
     @RequestMapping("/admin")
-    public String admin(){
+    public String admin(Model model,HttpSession session){
+        int h=10;//一页多少行
+        List<News> news = topicService.SelectNewsfy(1, h);
+        Page page=new Page();
+        page.setPagey(1);
+        page.setCount(topicService.getcount());
+        page.setTotalCount(page.getCount()%h==0 ? page.getCount()/h:(page.getCount()/h)+1);
+        Json json=new Json();
+        json.setNews(news);
+        json.setPage(page);
+        session.setAttribute("json",json);
         return "admin";
+    }
+    /*分页查询*/
+    @GetMapping("/fycx/{y}")
+    @ResponseBody
+    public String fycx(@PathVariable int y, Model model){
+        int h=10;//一页多少行
+        Page page=new Page();
+        page.setCount(topicService.getcount());
+        page.setTotalCount(page.getCount()%h==0 ? page.getCount()/h:(page.getCount()/h)+1);
+        if (y<1){
+            y=1;
+        }
+        if (y> page.getTotalCount()){
+            y= page.getTotalCount();
+        }
+        page.setPagey(y);
+        List<News> news = topicService.SelectNewsfy(y, h);
+        Json json=new Json();
+        json.setNews(news);
+        json.setPage(page);
+        String s = JSON.toJSONString(json);
+        return s;
     }
     /*新闻添加页面*/
     @RequestMapping("/news_add")
@@ -60,7 +100,8 @@ public class TopicController {
 
     /*主题编辑*/
     @RequestMapping("/topicList")
-    public String topicList(){
+    public String topicList(HttpSession session){
+        session.setAttribute("topics",newService.selectTopic());
         return "topicList";
     }
 

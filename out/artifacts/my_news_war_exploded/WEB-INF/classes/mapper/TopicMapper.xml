@@ -25,4 +25,12 @@
     <insert id="InsertTopic" parameterType="topic">
         insert into topic(tname) value (#{tname})
     </insert>
+    <!--分页查询-->
+    <select id="SelectNewsfy" parameterType="int" resultType="news">
+        select nid, ntid, ntitle, nauthor, ncreateDate, npicPath, ncontent, nmodifyDate, nsummary from news
+        limit #{y},#{h}
+    </select>
+    <select id="getcount" resultType="int">
+        SELECT COUNT(1) FROM news
+    </select>
 </mapper>
