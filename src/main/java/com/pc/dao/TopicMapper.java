@@ -26,4 +26,8 @@ public interface TopicMapper {
      * */
     int delComm(int cnid);
     int delNew(int nid);
+    /**
+     * 删除主题
+     * */
+    int delTopic(int tid);
 }

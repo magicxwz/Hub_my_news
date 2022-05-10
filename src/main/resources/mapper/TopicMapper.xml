@@ -45,4 +45,8 @@
     <delete id="delNew" >
         delete from news where nid=#{nid}
     </delete>
+    <!--删除主题-->
+    <delete id="delTopic" >
+        delete from topic where tid=#{tid}
+    </delete>
 </mapper>

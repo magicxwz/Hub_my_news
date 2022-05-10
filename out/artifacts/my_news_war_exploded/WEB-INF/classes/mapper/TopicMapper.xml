@@ -38,4 +38,15 @@
         <include refid="my_news"/>
         where ntitle like "%"#{xw}"%"
     </select>
+    <!--删除新闻跟子删除-->
+    <delete id="delComm" >
+        delete from comments where cnid=#{cnid}
+    </delete>
+    <delete id="delNew" >
+        delete from news where nid=#{nid}
+    </delete>
+    <!--删除主题-->
+    <delete id="delTopic" >
+        delete from topic where tid=#{tid}
+    </delete>
 </mapper>

@@ -44,10 +44,14 @@ public class TopicController {
     /*删除新闻*/
     @PostMapping("/scxw/{id}")
     @ResponseBody
-    public int admin(@PathVariable int id){
+    public String admin(@PathVariable int id){
         topicService.delComm(id);
         int i = topicService.delNew(id);
-        return i;
+        String a="false";
+        if (i>0){
+            a="true";
+        }
+        return a;
     }
     /*分页查询*/
     @GetMapping("/fycx/{y}")
@@ -111,6 +115,13 @@ public class TopicController {
     public String topicList(HttpSession session){
         session.setAttribute("topics",newService.selectTopic());
         return "topicList";
+    }
+    /*主题删除*/
+    @GetMapping("/topicdelete/{id}")
+    @ResponseBody
+    public String topicdel(@PathVariable int id){
+        int i = topicService.delTopic(id);
+        return "true";
     }
 
     /*查找新闻*/

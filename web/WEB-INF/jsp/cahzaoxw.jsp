@@ -53,7 +53,7 @@
         </form>
         <ul class="classlist">
             <c:forEach items="${sessionScope.news}" var="newss" begin="0" end="20">
-                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='#'>修改</a>&#160;&#160;&#160;&#160;<a href='#'>删除</a></span></li>
+                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='#'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc(${newss.nid})'>删除</a></span></li>
             </c:forEach>
         </ul>
     </div>
@@ -101,7 +101,7 @@
                         let ntitle=item.ntitle;
                         let nauthor=item.nauthor;
                         let nid=item.nid;
-                        let lis=$("<li>"+ntitle+"<span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='"+nid+"'>删除</a></span></li>");
+                        let lis=$("<li>"+ntitle+"<span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc("+nid+")'>删除</a></span></li>");
                         $(".classlist").append(lis);
                     });
                 },
@@ -111,4 +111,31 @@
             })
         })
     })
+    //删除
+    function sc(id){
+        let xbiao=$(this).index();
+        console.log(xbiao);
+        var flag=confirm("是否删除！")
+        if (flag){
+            $.ajax({
+                "url":"/Topic/scxw/"+id,//提交链接
+                "type":"post",//提交类型
+                "data":{},//提交值
+                "dataType":"text",//返回类型
+                "success":function(data){//返回类型的最终值
+                    console.log(data);
+                    console.log(typeof (data));
+                    if(data){
+                        $(".classlist li:eq("+xbiao+")").remove();
+                        console.log("删除成功");
+                    }else{
+                        alert("删除失败2")
+                    }
+                },
+                "error":function(){//成功与否运行
+                    alert("删除失败")
+                }
+            })
+        }
+    };
 </script>

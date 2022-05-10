@@ -122,8 +122,8 @@
                     console.log(data);
                     console.log(typeof (data));
                     if(data){
-                        $("tr:eq("+xbiao+")").remove();
-                        alert("É¾³ý³É¹¦");
+                        $(".classlist li:eq("+xbiao+")").remove();
+                        console.log("É¾³ý³É¹¦");
                     }else{
                         alert("É¾³ýÊ§°Ü2")
                     }

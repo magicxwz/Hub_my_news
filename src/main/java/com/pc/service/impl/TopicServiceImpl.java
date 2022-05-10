@@ -51,4 +51,9 @@ public class TopicServiceImpl implements TopicService {
     public int delNew(int nid) {
         return topicMapper.delNew(nid);
     }
+    /*删除主题*/
+    @Override
+    public int delTopic(int tid) {
+        return topicMapper.delTopic(tid);
+    }
 }
