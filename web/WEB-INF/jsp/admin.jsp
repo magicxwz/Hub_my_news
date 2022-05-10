@@ -25,11 +25,13 @@
                 <label>密&#160;&#160;码</label><input type="password" name="upwd" value="" class="login_input" />
                 <input type="submit" class="login_sub" value="登录" />
                 <a href="/Topic/register2">新人用户注册</a>
+                <a href="/News/newselect" class="login_link">返回首页</a>
             </form>
         </c:if>
         <c:if test="${uname ne null}">
             <form id="login" method="#" action="javascript:void(0)">
                 <label>用户：</label><label>${uname}&#160;&#160;欢迎登陆</label>&#160;&#160;<a href="/News/newselect"> 新闻主页 </a>&#160;&#160;<a href="/News/tdlu"> 登出 </a>
+                <a href="/News/newselect" class="login_link">返回首页</a>
             </form>
         </c:if>
     </div>
@@ -40,7 +42,7 @@
     <div id="opt_list">
     	<ul>
             <li><a href="/Topic/news_add">添加新闻</a></li>
-            <li><a href="/Topic/news_update">编辑新闻</a></li>
+            <li><a href="/Topic/admin">编辑新闻</a></li>
             <li><a href="/Topic/cahzaoxw">查找新闻</a></li>
             <li><a href="/Topic/topic_add">添加主题</a></li>
             <li><a href="/Topic/topicList">编辑主题</a></li>
@@ -49,7 +51,7 @@
     <div id="opt_area">
         <ul class="classlist">
             <c:forEach items="${sessionScope.json.news}" var="newss">
-                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='${newss.nid}'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc(${newss.nid})'>删除</a></span></li>
+                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='/Topic/news_update/${newss.nid}'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc(${newss.nid})'>删除</a></span></li>
             </c:forEach>
         </ul>
         <h2><span>数据总行数${sessionScope.json.page.count}</span>当前<span class="aa">${sessionScope.json.page.pagey }</span> / ${sessionScope.json.page.totalCount }
@@ -94,7 +96,7 @@
                     let ntitle=item.ntitle;
                     let nauthor=item.nauthor;
                     let nid=item.nid;
-                    let lis=$("<li>"+ntitle+"<span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc("+nid+")'>删除</a></span></li>");
+                    let lis=$("<li>"+ntitle+"<span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='/Topic/news_update/"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc("+nid+")'>删除</a></span></li>");
                     $(".classlist").append(lis);
                 });
                 //修改翻页链接

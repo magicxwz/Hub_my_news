@@ -239,6 +239,7 @@
 					<TD colspan="2" align="center">
 						<INPUT type="submit" value="同意以下协议条款并提交">
 					</TD>
+					<TD><a href="/News/newselect" class="login_link">返回首页</a></TD>
 				</TR>
 				<TR>
 					<TD colspan="2">

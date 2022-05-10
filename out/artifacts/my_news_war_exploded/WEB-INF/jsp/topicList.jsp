@@ -41,7 +41,7 @@
 	<div id="opt_list">
     	<ul>
 			<li><a href="/Topic/news_add">添加新闻</a></li>
-			<li><a href="/Topic/news_update">编辑新闻</a></li>
+			<li><a href="/Topic/admin">编辑新闻</a></li>
 			<li><a href="/Topic/cahzaoxw">查找新闻</a></li>
 			<li><a href="/Topic/topic_add">添加主题</a></li>
 			<li><a href="/Topic/topicList">编辑主题</a></li>
@@ -50,7 +50,7 @@
     <div id="opt_area">
 		<ul class="classlist">
 			<c:forEach items="${topics}" var="topi">
-				<li>${topi.tname}<span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">修改</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:sc(${topi.tid})">删除</a></span></li>
+				<li>${topi.tname}<span>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Topic/topicupdate/${topi.tid}">修改</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:sc(${topi.tid})">删除</a></span></li>
 			</c:forEach>
 		</ul>
     </div>

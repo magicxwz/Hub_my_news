@@ -2,7 +2,9 @@ package com.pc.service.impl;
 
 import com.pc.beans.News;
 import com.pc.beans.Topic;
+import com.pc.dao.NewMapper;
 import com.pc.dao.TopicMapper;
+import com.pc.service.NewService;
 import com.pc.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import java.util.List;
 public class TopicServiceImpl implements TopicService {
     @Autowired
     private TopicMapper topicMapper;
+    @Autowired
+    private NewMapper newMapper;
     /*添加新闻*/
     @Override
     public int InsertNew(News news) {
@@ -56,4 +60,21 @@ public class TopicServiceImpl implements TopicService {
     public int delTopic(int tid) {
         return topicMapper.delTopic(tid);
     }
+    /*修改主题*/
+    @Override
+    public int updateTopic(Topic topic) {
+        return topicMapper.updateTopic(topic);
+    }
+
+    @Override
+    public Topic selectTopicid(int tid) {
+        return topicMapper.selectTopicid(tid);
+    }
+    /*修改新闻*/
+    @Override
+    public int updateNewg(News news) {
+        return topicMapper.updateNewg(news);
+    }
+
+
 }

@@ -7,13 +7,13 @@ import com.pc.beans.Page;
 import com.pc.beans.Topic;
 import com.pc.service.NewService;
 import com.pc.service.TopicService;
-import com.pc.service.impl.TopicServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -84,6 +84,7 @@ public class TopicController {
     @PostMapping("/news_adds")
     @ResponseBody
     public String news_adds(News news){
+        news.setNcreateDate(new Date());
         topicService.InsertNew(news);
         return "a";
     }
@@ -100,9 +101,20 @@ public class TopicController {
         return "a";
     }
     /*新闻编辑*/
-    @RequestMapping("/news_update")
-    public String news_update(){
+    @RequestMapping("/news_update/{nid}")
+    public String news_update(@PathVariable int nid,Model model){
+        News news = newService.selectNew(nid);
+        List<Topic> topics = newService.selectTopic();
+        model.addAttribute("topics",topics);
+        model.addAttribute("news",news);
         return "news_update";
+    }
+    /*修改新闻*/
+    @PostMapping("/news_updateg")
+    @ResponseBody
+    public String news_update(News news){
+        topicService.updateNewg(news);
+        return "true";
     }
     /*注册用户*/
     @RequestMapping("/register2")
@@ -121,6 +133,20 @@ public class TopicController {
     @ResponseBody
     public String topicdel(@PathVariable int id){
         int i = topicService.delTopic(id);
+        return "true";
+    }
+    /*主题修改页面*/
+    @RequestMapping("/topicupdate/{tid}")
+    public String topicupdate(@PathVariable int tid,Model model){
+        Topic topic = topicService.selectTopicid(tid);
+        model.addAttribute("topic",topic);
+        return "topic_update";
+    }
+    /*主题修改*/
+    @PostMapping("/topicupdateg")
+    @ResponseBody
+    public String topicupd(Topic topic){
+        int i = topicService.updateTopic(topic);
         return "true";
     }
 

@@ -23,14 +23,16 @@
       <label>密&#160;&#160;码</label><input type="password" name="upwd" value="" class="login_input" />
       <input type="submit" class="login_sub" value="登录" />
       <a href="/Topic/register2">新人用户注册</a>
+      <a href="/News/newselect" class="login_link">返回首页</a>
     </form>
   </c:if>
   <c:if test="${uname ne null}">
     <form id="login" method="#" action="javascript:void(0)">
       <label>用户：</label><label>${uname}&#160;&#160;欢迎登陆</label>&#160;&#160;<a href="/News/tdlu"> 登出 </a>
+      <a href="/News/newselect" class="login_link">返回首页</a>
     </form>
   </c:if>
-  <div id="channel"><a href="/News/newselect" class="login_link">返回首页</a>  </div>
+  <div id="channel"></div>
 </div>
 <div id="main">
   <div id="opt_list">
@@ -136,9 +138,7 @@ $(function (){
         "nauthor":nauthor,
         "nsummary":nsummary,
         "ncontent":ncontent,
-        "npicPath":npicPath,
-        "ncreateDate":ncreateDate,
-        "nmodifyDate":nmodifyDate
+        "npicPath":npicPath
       },//提交值
       "dataType":"text",//返回类型
       "success":function(data){

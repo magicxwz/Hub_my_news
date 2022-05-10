@@ -49,4 +49,25 @@
     <delete id="delTopic" >
         delete from topic where tid=#{tid}
     </delete>
+    <!--修改主题-->
+    <update id="updateTopic" parameterType="topic">
+        update topic set tname=#{tname} where tid=#{tid}
+    </update>
+    <!--tid查找主题-->
+    <select id="selectTopicid" resultType="topic">
+        select tid, tname from topic where tid=#{tid}
+    </select>
+    <!--修改新闻-->
+    <update id="updateNewg" parameterType="news">
+        update news set
+        ntid=#{ntid},
+        ntitle=#{ntitle},
+        nauthor=#{nauthor},
+        ncreateDate=#{ncreateDate},
+        npicPath=#{npicPath},
+        ncontent=#{ncontent},
+        nmodifyDate=#{nmodifyDate},
+        nsummary=#{nsummary}
+        where nid=#{nid}
+    </update>
 </mapper>

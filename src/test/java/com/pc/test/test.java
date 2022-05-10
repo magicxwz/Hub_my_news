@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,5 +40,13 @@ public class test {
         NewService newServiceImpl = (NewService) context.getBean("newServiceImpl");
         Users users = newServiceImpl.selectUsersdl("1","1");
         System.out.println(users);
+    }
+    @Test
+    public void t4(){
+        SimpleDateFormat sj = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        News news=new News();
+        Date jdate=new Date();
+
+        System.out.println(jdate);
     }
 }

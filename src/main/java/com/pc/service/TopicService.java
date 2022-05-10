@@ -27,7 +27,11 @@ public interface TopicService {
     int delComm(int cnid);
     int delNew(int nid);
     /**
-     * 删除主题
+     * 删除主题 修改主题
      * */
     int delTopic(int tid);
+    int updateTopic(Topic topic);
+    Topic selectTopicid(int tid);
+    /*修改新闻*/
+    int updateNewg(News news);
 }
