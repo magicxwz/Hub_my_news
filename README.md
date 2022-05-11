@@ -9,7 +9,9 @@ Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN�
 软件架构说明
 测试作业项目
 新闻提交增删改等
-
+其中使用了：异步处理ajax查询调用等，多表查询，多对一
+spring+mybatis
+ssm
 
 #### 安装教程
 
