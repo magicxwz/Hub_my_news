@@ -2,6 +2,7 @@ package com.pc.dao;
 
 import com.pc.beans.News;
 import com.pc.beans.Topic;
+import com.pc.beans.Users;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -36,4 +37,9 @@ public interface TopicMapper {
      * 修改新闻
      * */
     int updateNewg(News news);
+    /**
+     * 用户注册
+     * */
+    Users selectdgyh(String uname);
+    int insertUser(Users users);
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -43,10 +45,14 @@ public class test {
     }
     @Test
     public void t4(){
-        SimpleDateFormat sj = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         News news=new News();
         Date jdate=new Date();
 
-        System.out.println(jdate);
+        news.setNcreateDate(jdate);
+        Date ncreateDate = news.getNcreateDate();
+
+        Timestamp timeStamp = new Timestamp(jdate.getTime());
+
+        System.out.println(timeStamp);
     }
 }

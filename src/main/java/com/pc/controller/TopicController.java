@@ -1,10 +1,7 @@
 package com.pc.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.pc.beans.Json;
-import com.pc.beans.News;
-import com.pc.beans.Page;
-import com.pc.beans.Topic;
+import com.pc.beans.*;
 import com.pc.service.NewService;
 import com.pc.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +82,7 @@ public class TopicController {
     @ResponseBody
     public String news_adds(News news){
         news.setNcreateDate(new Date());
+        news.setNmodifyDate(new Date());
         topicService.InsertNew(news);
         return "a";
     }
@@ -115,11 +113,6 @@ public class TopicController {
     public String news_update(News news){
         topicService.updateNewg(news);
         return "true";
-    }
-    /*注册用户*/
-    @RequestMapping("/register2")
-    public String register2(){
-        return "register2";
     }
 
     /*主题编辑*/
@@ -164,4 +157,42 @@ public class TopicController {
         return s;
     }
 
+    /*注册用户页面*/
+    @RequestMapping("/register2")
+    public String register2(){
+        return "register2";
+    }
+    /*注册用户名字查询*/
+    @PostMapping("/yhmcx/{uname}")
+    @ResponseBody
+    public String yhmcx(@PathVariable String uname){
+        String a="fals";
+        System.out.println(uname);
+        Users selectdgyh = topicService.selectdgyh(uname);
+        System.out.println(selectdgyh);
+        if (selectdgyh==null){
+            a="tru";
+        }
+        return a;
+    }
+    /*用户注册*/
+    @PostMapping("/yhzc")
+    @ResponseBody
+    public String yhzc(Users users){
+        System.out.println("----------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "22222222222222222222222222222222222222222222222222222222"+users);
+        String a="false";
+        int i = topicService.insertUser(users);
+        if (i>0){
+            a="true";
+        }
+        return a;
+    }
 }

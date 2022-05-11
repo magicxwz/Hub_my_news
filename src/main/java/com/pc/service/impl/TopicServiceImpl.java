@@ -2,6 +2,7 @@ package com.pc.service.impl;
 
 import com.pc.beans.News;
 import com.pc.beans.Topic;
+import com.pc.beans.Users;
 import com.pc.dao.NewMapper;
 import com.pc.dao.TopicMapper;
 import com.pc.service.NewService;
@@ -74,6 +75,25 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public int updateNewg(News news) {
         return topicMapper.updateNewg(news);
+    }
+    /*用户注册*/
+    @Override
+    public Users selectdgyh(String uname) {
+        return topicMapper.selectdgyh(uname);
+    }
+
+    @Override
+    public int insertUser(Users users) {
+        System.out.println("----------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "----------------------------------------------------" +
+                "11111111111111111111111111111111111111111111111111111"+users);
+        return topicMapper.insertUser(users);
     }
 
 

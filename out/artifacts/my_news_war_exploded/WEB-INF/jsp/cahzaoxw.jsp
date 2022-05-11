@@ -25,12 +25,14 @@
                 <label>密&#160;&#160;码</label><input type="password" name="upwd" value="" class="login_input" />
                 <input type="submit" class="login_sub" value="登录" />
                 <a href="/Topic/register2">新人用户注册</a>
+                <a href="/News/newselect" class="login_link">返回首页</a>
             </form>
 
         </c:if>
         <c:if test="${uname ne null}">
             <form id="login" method="#" action="javascript:void(0)">
                 <label>用户：</label><label>${uname}&#160;&#160;欢迎登陆</label>&#160;&#160;<a href="/News/newselect"> 新闻主页 </a>&#160;&#160;<a href="/News/tdlu"> 登出 </a>
+                <a href="/News/newselect" class="login_link">返回首页</a>
             </form>
         </c:if>
     </div>
@@ -53,7 +55,7 @@
         </form>
         <ul class="classlist">
             <c:forEach items="${sessionScope.news}" var="newss" begin="0" end="20">
-                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='/Topic/news_update/${newss.nid}'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc(${newss.nid})'>删除</a></span></li>
+                <li><a href="/News/new/${newss.nid}">${newss.ntitle}</a>><span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='/Topic/news_update/${newss.nid}'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc(${newss.nid})'>删除</a></span></li>
             </c:forEach>
         </ul>
     </div>
@@ -101,7 +103,7 @@
                         let ntitle=item.ntitle;
                         let nauthor=item.nauthor;
                         let nid=item.nid;
-                        let lis=$("<li>"+ntitle+"<span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='/Topic/news_update/"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc("+nid+")'>删除</a></span></li>");
+                        let lis=$("<li><a href='/News/new/"+nid+"'>"+ntitle+"</a><span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='/Topic/news_update/"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc("+nid+")'>删除</a></span></li>");
                         $(".classlist").append(lis);
                     });
                 },

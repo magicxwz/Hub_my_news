@@ -2,6 +2,7 @@ package com.pc.service;
 
 import com.pc.beans.News;
 import com.pc.beans.Topic;
+import com.pc.beans.Users;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -34,4 +35,12 @@ public interface TopicService {
     Topic selectTopicid(int tid);
     /*修改新闻*/
     int updateNewg(News news);
+    /**
+     * 用户名异步
+     * */
+    Users selectdgyh(String uname);
+    /**
+     * 用户注册
+     * */
+    int insertUser(Users users);
 }

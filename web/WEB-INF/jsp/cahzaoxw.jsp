@@ -55,7 +55,7 @@
         </form>
         <ul class="classlist">
             <c:forEach items="${sessionScope.news}" var="newss" begin="0" end="20">
-                <li>${newss.ntitle}<span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='/Topic/news_update/${newss.nid}'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc(${newss.nid})'>删除</a></span></li>
+                <li><a href="/News/new/${newss.nid}">${newss.ntitle}</a>><span>作者：${newss.nauthor}&#160;&#160;&#160;&#160;<a href='/Topic/news_update/${newss.nid}'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc(${newss.nid})'>删除</a></span></li>
             </c:forEach>
         </ul>
     </div>
@@ -103,7 +103,7 @@
                         let ntitle=item.ntitle;
                         let nauthor=item.nauthor;
                         let nid=item.nid;
-                        let lis=$("<li>"+ntitle+"<span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='/Topic/news_update/"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc("+nid+")'>删除</a></span></li>");
+                        let lis=$("<li><a href='/News/new/"+nid+"'>"+ntitle+"</a><span>作者："+nauthor+"&#160;&#160;&#160;&#160;<a href='/Topic/news_update/"+nid+"'>修改</a>&#160;&#160;&#160;&#160;<a href='javascript:sc("+nid+")'>删除</a></span></li>");
                         $(".classlist").append(lis);
                     });
                 },

@@ -40,6 +40,18 @@ public class NewsController {
 //        model.addAttribute("wlxw",newService.selectNewsntid(5));
         return "index";
     }
+    /*网页的主页面*/
+    @GetMapping("/newselectzc/{uname}")
+    public String newselectzc(@PathVariable String uname, Model model, HttpServletRequest request){
+        HttpSession session = request.getSession(true);
+        session.setAttribute("news",newService.selectNews());
+        session.setAttribute("topics",newService.selectTopic());
+        session.setAttribute("gnxw",newService.selectNewsntid(1));
+        session.setAttribute("gjxw",newService.selectNewsntid(2));
+        session.setAttribute("wlxw",newService.selectNewsntid(5));
+        session.setAttribute("uname",uname);
+        return "index";
+    }
     /*异步处理*/
     @GetMapping("/newsn/{ntid}")
     @ResponseBody

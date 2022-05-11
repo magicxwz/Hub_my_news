@@ -16,6 +16,7 @@
 		<input type="reset" value="重置" class="opt_sub" />
 	</form>
 	<h3><a href="/Topic/topicList">返回编辑主题</a></h3>
+	<h3><a href="/News/newselect" class="login_link">返回首页</a></h3>
 </div>
 <script type="text/javascript">
 $(function (){
